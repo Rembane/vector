@@ -966,6 +966,10 @@ unsafeBackpermute = G.unsafeBackpermute
 -- performed in place if it is safe to do so and will modify a copy of the
 -- vector otherwise.
 --
+-- Note that if you are doing many small updates and need performance 
+-- it is much faster to thaw the vector, run all updates in ST or IO 
+-- and then freeze it again, rathern than using modify.
+--
 -- @
 -- modify (\\v -> write v 0 \'x\') ('replicate' 3 \'a\') = \<\'x\',\'a\',\'a\'\>
 -- @
